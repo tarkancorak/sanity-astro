@@ -1,0 +1,33 @@
+name: Build check
+
+# Builds the Astro site on every PR against master so that Dependabot PRs
+# (and other PRs) are validated automatically before they get merged.
+on:
+  pull_request:
+    branches: ['master']
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    # SITE_RUNNER=self-hosted: runner from supavesta/infra/runner while the Actions minutes are used up.
+    runs-on: ${{ vars.SITE_RUNNER || 'ubuntu-latest' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm run test --if-present
+
+      - name: Build with Astro
+        run: npm run build

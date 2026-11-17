@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO: replace with this site's production domain — the same one set as `site`
+# in astro.config.mjs. A crawler finds the sitemap through this line.
+Sitemap: https://example.com/sitemap-index.xml

@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/*
+ * =====================================================================
+ *  DESIGN LAYER — intentionally left minimal.
+ * =====================================================================
+ *  This template ships the *skeleton* (structure, routing, config, form
+ *  wiring, CI/CD), NOT a finished look. Every client site should get its
+ *  own design. Define that design HERE (and in the components) so no two
+ *  sites look alike.
+ *
+ *  The tokens below are neutral placeholders. Replace the values, add
+ *  brand fonts, adjust spacing/radii, then style the components.
+ *
+ *  Self-hosted fonts (GDPR-friendly, no Google Fonts CDN request):
+ *  install e.g. `npm i @fontsource-variable/<font>` and import it here, e.g.
+ *    @import "@fontsource-variable/inter/wght.css";
+ *  then set --font-body / --font-display below.
+ * =====================================================================
+ */
+
+@theme {
+  /* Neutral placeholder palette — replace per client */
+  --color-ink: #1a1a1a;
+  --color-gray: #666666;
+  --color-paper: #ffffff;
+  --color-border: #e5e5e5;
+
+  /* Accent — swap this one value to re-skin quickly */
+  --color-accent: #2563eb;
+  --color-accent-dark: #1d4ed8;
+
+  /* System-font stack by default; point these at real brand fonts */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-body);
+
+  /* Radii */
+  --radius-control: 8px;
+  --radius-card: 12px;
+
+  /* Breakpoints (max-width usage: max-nav:, max-stack:) */
+  --breakpoint-nav: 1040px;
+  --breakpoint-stack: 700px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* The header is sticky (top-0, z-50). Without this, anchor links from
+       the nav, footer and any hero CTA land *behind* it and the section's
+       heading gets clipped. Value = measured header height + 24px of air.
+       The skeleton header is 71px at every width; re-measure after you
+       restyle it, and add breakpoints here if its height starts to vary. */
+    scroll-padding-top: 95px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+}
+
+/* -------------------------------------------------------------------
+ * Legal pages (Impressum/Datenschutz) — reusable content styling.
+ * This is boilerplate that every German site needs, so it stays in the
+ * template. Restyle it to match the client design if you like.
+ * ------------------------------------------------------------------- */
+.legal-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.legal-p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333333;
+  margin: 0;
+}
+
+.legal-p a {
+  text-decoration: underline;
+}
+
+/* Highlights placeholder fields that MUST be filled before go-live */
+.legal-todo {
+  background: #fbf3e6;
+  border: 1px dashed #d8b98a;
+  color: #8a6a2e;
+  border-radius: 6px;
+  padding: 1px 8px;
+  font-size: 0.86em;
+  font-weight: 600;
+}
+
+.legal-notice {
+  background: #fbf3e6;
+  border: 1px solid #ead7b4;
+  border-radius: 12px;
+  padding: 18px 22px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #7a5e28;
+}

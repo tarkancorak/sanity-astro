@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <!-- Placeholder favicon — replace with the client's real mark. -->
+  <rect x="12" y="12" width="76" height="76" rx="18" stroke="#1a1a1a" stroke-width="9" />
+  <path d="M 34 52 L 46 64 L 68 38" stroke="#2563eb" stroke-width="9" />
+</svg>

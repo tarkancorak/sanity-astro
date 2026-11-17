@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import Logo from "../components/Logo.astro";
+import { siteConfig } from "../config/site";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "" } = Astro.props as Props;
+const isImpressum = Astro.url.pathname.startsWith("/impressum");
+const isDatenschutz = Astro.url.pathname.startsWith("/datenschutz");
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    {description && <meta name="description" content={description} />}
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased">
+    <header class="border-b border-[var(--color-border)]">
+      <div class="mx-auto flex max-w-[820px] items-center justify-between px-6 py-4">
+        <a href="/"><Logo mode="light" height={20} /></a>
+        <a href="/" class="text-sm font-semibold">← Zur Startseite</a>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <div class="mx-auto max-w-[820px] px-6 py-14">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="border-t border-[var(--color-border)]">
+      <div class="mx-auto flex max-w-[820px] flex-wrap items-center justify-between gap-4 px-6 py-6 text-sm">
+        <p>&copy; {siteConfig.company.year} {siteConfig.company.name}</p>
+        <div class="flex gap-5">
+          <a href="/impressum" class:list={[isImpressum && "font-semibold"]}>Impressum</a>
+          <a href="/datenschutz" class:list={[isDatenschutz && "font-semibold"]}>Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

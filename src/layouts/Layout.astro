@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${siteConfig.company.name} | ${siteConfig.company.tagline}`,
+  description = siteConfig.company.tagline,
+} = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+
+    <!--
+      Cookie consent (GDPR): wire up a consent banner here if the site loads
+      any non-essential third-party scripts (analytics, maps, embeds). Example
+      with Cookiebot — replace the id and un-comment before go-live:
+
+      <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js"
+              data-cbid="TODO_REPLACE_WITH_REAL_COOKIEBOT_ID"
+              data-blockingmode="auto" type="text/javascript" is:inline></script>
+    -->
+
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased">
+    <span id="top"></span>
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

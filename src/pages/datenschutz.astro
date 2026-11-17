@@ -1,0 +1,60 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { siteConfig } from "../config/site";
+---
+
+<LegalLayout title={`Datenschutzerklärung | ${siteConfig.company.name}`}>
+  <h1 class="text-[30px] font-extrabold hyphens-auto break-words sm:text-[40px]" style="letter-spacing:-0.02em;">Datenschutzerklärung</h1>
+
+  <div class="legal-notice mt-7">
+    <strong>Hinweis für die Umsetzung:</strong> Dies ist ein Grundgerüst. Gelb markierte Angaben
+    ergänzen und die Erklärung an den tatsächlichen technischen Aufbau (Hosting, Kontaktformular,
+    eingebundene Dienste) anpassen. Vor dem Livegang rechtlich prüfen lassen.
+  </div>
+
+  <section class="mt-10">
+    <h2 class="legal-h2">1. Verantwortlicher</h2>
+    <p class="legal-p">
+      Verantwortlich für die Datenverarbeitung auf dieser Website:<br />
+      {siteConfig.company.name}, Inhaber <span class="legal-todo">[TODO: Vor- und Nachname]</span><br />
+      <span class="legal-todo">[TODO: Anschrift, PLZ und Ort]</span><br />
+      Telefon: {siteConfig.phone.display} · E-Mail:
+      <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <h2 class="legal-h2">2. Hosting</h2>
+    <p class="legal-p">
+      Diese Website wird bei <span class="legal-todo">[TODO: Hoster nennen, z. B. IONOS SE]</span>
+      gehostet. Beim Aufruf werden technisch notwendige Server-Logdaten (IP-Adresse, Zeitpunkt,
+      abgerufene Datei) verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <h2 class="legal-h2">3. Kontaktformular</h2>
+    <p class="legal-p">
+      Wenn Sie uns über das Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben
+      (z. B. Name, E-Mail-Adresse und Ihre Nachricht) zwecks Bearbeitung der Anfrage verarbeitet.
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. a und lit. b DSGVO.
+    </p>
+    <p class="legal-p mt-3">
+      Der technische Versand des Kontaktformulars wird direkt auf dem Server dieser Website
+      verarbeitet und von dort per E-Mail an unser Postfach weitergeleitet. Das Hosting erfolgt bei
+      <span class="legal-todo">[TODO: Hoster nennen, Standard: IONOS SE, Elgendorfer Straße 57, 56410
+      Montabaur]</span>. Es werden keine externen Formular-Dienstleister eingesetzt und es findet
+      keine Übermittlung in ein Drittland statt. Die Auftragsverarbeitung ist über den
+      Hosting-Vertrag geregelt.
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <h2 class="legal-h2">4. Ihre Rechte</h2>
+    <p class="legal-p">
+      Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+      Datenübertragbarkeit sowie ein Widerspruchsrecht. Zudem besteht ein Beschwerderecht bei einer
+      Datenschutz-Aufsichtsbehörde.
+    </p>
+  </section>
+</LegalLayout>

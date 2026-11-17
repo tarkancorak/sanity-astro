@@ -1,0 +1,35 @@
+---
+import { siteConfig } from "../config/site";
+
+/*
+ * Placeholder wordmark. Intentionally plain — replace with the client's
+ * real logo (inline SVG or an <img> from /public) as part of the design pass.
+ */
+
+interface Props {
+  mode?: "light" | "dark";
+  height?: number;
+}
+
+const { mode = "light", height = 24 } = Astro.props as Props;
+---
+
+<span
+  class="logo font-display font-extrabold whitespace-nowrap"
+  data-mode={mode}
+  style={`font-size:${height}px; line-height:1;`}
+>
+  {siteConfig.company.wordmarkMain}<span class="logo-accent">{siteConfig.company.wordmarkAccent}</span>
+</span>
+
+<style>
+  .logo[data-mode="light"] {
+    color: var(--color-ink);
+  }
+  .logo[data-mode="dark"] {
+    color: #ffffff;
+  }
+  .logo-accent {
+    color: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import Logo from "./Logo.astro";
+import { siteConfig } from "../config/site";
+
+/*
+ * Skeleton header: logo + nav + a phone CTA, wired to siteConfig.
+ * Styling is deliberately minimal — design it per client.
+ *
+ * Sticky by default, like every site derived from this template. If you
+ * change the header's height, re-measure and update `scroll-padding-top`
+ * in global.css — otherwise anchor links land behind the header.
+ */
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-[var(--color-border)] backdrop-blur"
+  style="background-color: color-mix(in srgb, var(--color-paper) 88%, transparent);"
+>
+  <div class="mx-auto flex max-w-[1180px] items-center justify-between gap-6 px-6 py-4">
+    <a href="#top" aria-label={`${siteConfig.company.name} — Startseite`}>
+      <Logo mode="light" height={22} />
+    </a>
+
+    <nav class="max-nav:hidden flex items-center gap-8">
+      {
+        siteConfig.nav.map((link) => (
+          <a href={link.href} class="text-sm font-medium hover:text-[var(--color-accent)]">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={`tel:${siteConfig.phone.link}`}
+      class="rounded-[var(--radius-control)] border border-[var(--color-border)] px-4 py-2 text-sm font-semibold"
+    >
+      Anrufen
+    </a>
+  </div>
+</header>

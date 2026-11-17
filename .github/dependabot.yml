@@ -1,0 +1,47 @@
+version: 2
+updates:
+  # npm dependencies (Astro, Tailwind, tooling)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    # Bundle minor and patch updates into a single PR
+    groups:
+      npm-minor-patch:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      # Bundle security fixes into ONE grouped PR as well, so multiple PRs
+      # don't write to package-lock.json at the same time.
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+    # Do NOT auto-offer major bumps (e.g. Astro 8, Tailwind 5) — those are
+    # breaking and are done deliberately by hand.
+    ignore:
+      # Applies to version updates: no major PRs.
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+      # IMPORTANT: for SECURITY updates Dependabot ignores 'update-types' and
+      # will still offer majors — only a static version range is honored there.
+      # Astro's core major drags the Vite major (the actual breaking cause), so
+      # cap 'astro' to the current major line (7.x). Raise on a deliberate
+      # Astro 8 upgrade (and bump overrides.vite accordingly).
+      - dependency-name: "astro"
+        versions: [">=8.0.0"]
+
+  # GitHub Actions used in the workflows (actions/checkout, setup-node, ...)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - "*"
